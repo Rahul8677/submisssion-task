@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #161616;
+        }
+        .slider-container {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            background: #fff;
+        }
+        .slider-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .button-container {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <a id="imageLink" href="" target="_blank">
+            <img id="sliderImage" class="slider-image" src="" alt="Slider Image">
+        </a>
+        <div class="button-container">
+            <button class="btn" onclick="prevImage()">❮ Prev</button>
+            <button class="btn" onclick="nextImage()">Next ❯</button>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            { 
+                url: "https://media.istockphoto.com/id/2154917672/photo/garden-oasis.jpg?s=1024x1024&w=is&k=20&c=VkbbHG6vF2qUX8PkFgYpnPNrQXnNrED8BwF1CNM55_0=", 
+                link: "https://www.istockphoto.com/photo/garden-oasis-gm2154917672-785309120" 
+            },
+            { 
+                url: "https://media.istockphoto.com/id/2139744479/photo/outdoor-garden-patio-with-garden-furnitures-coffee-table-parasol-and-plants.jpg?s=2048x2048&w=is&k=20&c=vpeF31vOu5MzSRlObKaKnpbghpt_OudxEAOJudiaaZc=", 
+                link: "https://www.istockphoto.com/photo/outdoor-garden-patio-with-garden-furnitures-coffee-table-parasol-and-plants-gm2139744479-785309120" 
+            },
+            { 
+                url: "https://plus.unsplash.com/premium_photo-1661963333824-fd020faec5fc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+                link: "https://unsplash.com/photos/fd020faec5fc" 
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function showImage(index) {
+            document.getElementById("sliderImage").src = images[index].url;
+            document.getElementById("imageLink").href = images[index].link;
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            showImage(currentIndex);
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            showImage(currentIndex);
+        }
+
+        showImage(currentIndex);
+    </script>
+
+</body>
+</html>
